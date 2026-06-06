@@ -1,40 +1,76 @@
 # vit-from-scratch
 
-A simple PyTorch implementation of Vision Transformer (ViT).
+# CNN vs Vision Transformer on CIFAR-10
 
-## Motivation
+This repository compares Convolutional Neural Networks (CNNs) and Vision Transformers (ViT) on the CIFAR-10 dataset using a fully implemented training pipeline in PyTorch.
 
-I am interested in Computer Vision and Vision-Language Models (VLMs).
+---
 
-This project is for understanding:
+## 1. Objective
 
-- How Vision Transformer works
-- Difference between CNN and Transformer
-- Self-Attention in vision tasks
+To empirically analyze the differences in inductive bias between CNNs and Vision Transformers by evaluating:
 
-## What is ViT?
+- Convergence speed
+- Final classification accuracy
+- Training stability
 
-Vision Transformer splits an image into patches and treats them as tokens.
+---
 
-Then it applies Transformer Encoder layers to learn relationships between patches.
+## 2. Models
 
-## Architecture
+- Simple CNN with two convolutional layers
+- Vision Transformer (ViT) with patch embedding and multi-head self-attention
 
-Image → Patch Embedding → CLS Token + Position Embedding → Transformer Encoder → MLP Head → Output
+---
 
-## Self-Attention
+## 3. Dataset
 
-Attention(Q,K,V) = softmax(QK^T / √d)V
+- CIFAR-10 (10-class image classification dataset)
 
-## Why ViT?
+---
 
-- CNN: local feature extraction
-- ViT: global attention between all patches
+## 4. Experimental Results
 
-ViT is more flexible but requires more data.
+### Accuracy
+- CNN: ~0.68–0.70
+- ViT: ~0.58–0.61
 
-## Future Work
+### Observations
 
-- Train on CIFAR-10
-- Compare with CNN
-- Explore CLIP and VLMs
+- CNN converges faster and achieves higher accuracy on small-scale datasets.
+- ViT shows slower convergence but continues improving over epochs.
+
+---
+
+## 5. Key Findings
+
+- CNN benefits from strong inductive bias (locality and translation invariance)
+- ViT requires larger data scale for optimal performance
+- On CIFAR-10, CNN is more data-efficient
+
+---
+
+## 6. Results Visualization
+
+### CNN
+- `results/CNN_loss.png`
+- `results/CNN_acc.png`
+
+### ViT
+- `results/ViT_loss.png`
+- `results/ViT_acc.png`
+
+---
+
+## 7. Future Work
+
+- Scaling ViT to larger datasets (e.g., ImageNet)
+- Introducing data augmentation and regularization
+- Extending to Vision-Language Models (e.g., CLIP-style architectures)
+
+---
+
+## 8. Requirements
+
+```bash
+pip install -r requirements.txt
